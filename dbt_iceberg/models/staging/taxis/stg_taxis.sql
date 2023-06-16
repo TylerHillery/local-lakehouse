@@ -1,7 +1,6 @@
 
 {{ config(
-  persist_docs={"relation": true, "columns": true},
-  file_format="iceberg"
+  persist_docs={"relation": true, "columns": true}
 ) }}
 
 SELECT *

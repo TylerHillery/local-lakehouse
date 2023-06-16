@@ -35,6 +35,7 @@ vars:
 models:
   dbt_iceberg:
     +materialized: table
+    +file_format: iceberg
 
 on-run-start:
   - "CREATE SCHEMA IF NOT EXISTS {{ schema }}"
