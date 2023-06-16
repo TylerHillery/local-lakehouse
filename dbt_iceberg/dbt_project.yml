@@ -24,7 +24,7 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "dbt_packages"
 
 vars:
-  catalog: warehouse
+  catalog: sandbox
 
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
@@ -33,7 +33,7 @@ vars:
 # directory as views. These settings can be overridden in the individual model
 # files using the `{{ config(...) }}` macro.
 models:
-  dbt_tabular:
+  dbt_iceberg:
     +materialized: table
 
 on-run-start:

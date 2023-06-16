@@ -6,14 +6,11 @@ metastore_db
 .vscode/*
 
 # data
-notebooks/*
+examples/notebooks/.ipynb_checkpoints
 warehouse/*
 
 # logs
 logs/*
-dbt_iceberg/**/logs
-dbt_iceberg/**/dbt_packages
-dbt_iceberg/**/target
 
 # conf
 conf/**/*.jks

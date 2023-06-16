@@ -5,8 +5,9 @@ dbt_iceberg:
       type: spark
       method: thrift
       schema: analytics
-      port: 10009
+      host: 127.0.0.1
+      port: 10000
       threads: 1
-      connect_retries: 5
-      connect_timeout: 60
+      connect_retries: 3
+      connect_timeout: 15
       retry_all: true

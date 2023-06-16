@@ -5,5 +5,4 @@
 ) }}
 
 SELECT *
-FROM examples.nyc_taxi_yellow
-WHERE pickup_time BETWEEN '2021-01-01' AND '2021-01-02'
+FROM nyc.taxis

@@ -30,7 +30,9 @@ services:
       - MINIO_DOMAIN=minio
     command: ["server", "/data", "--console-address", ":9001"]
     networks:
-      - iceberg_net
+      iceberg_net:
+        aliases:
+          - warehouse.minio
   
   mc:
     image: minio/mc
@@ -76,8 +78,7 @@ services:
       - AWS_SECRET_ACCESS_KEY=password
       - AWS_REGION=us-east-1
     volumes:
-      - ./warehouse:/src/warehouse
-      - ./notebooks:/src/notebooks
+      - ./examples/notebooks:/src/notebooks
       - ./dbt_iceberg:/src/dbt_iceberg
     ports:
       - 7077:7077 # Spark port
@@ -87,7 +88,12 @@ services:
       - 10001:10001 # Thrift ODBC/JDBC port
       - 18080:18080 # Spark history web ui port
     networks:
-      - iceberg_net
+      iceberg_net:
+        aliases:
+          - warehouse.minio
+          - dbt
+          - spark-iceberg
+          - spark
     depends_on:
       - rest
       - minio
