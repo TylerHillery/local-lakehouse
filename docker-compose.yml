@@ -78,7 +78,7 @@ services:
     volumes:
       - ./warehouse:/src/warehouse
       - ./notebooks:/src/notebooks
-      - ./dbt:/src/dbt
+      - ./dbt_iceberg:/src/dbt_iceberg
     ports:
       - 7077:7077 # Spark port
       - 8080:8080 # Spark driver UI

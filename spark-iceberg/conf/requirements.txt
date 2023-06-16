@@ -1,7 +1,7 @@
 jupyter==1.0.0
 spylon-kernel==0.4.1
+jupysql==0.7.8
 pyiceberg[pyarrow,duckdb,pandas]==0.3.0
-jupysql==0.5.2
 duckdb-engine==0.6.8
-prettytable==3.3.0
 dbt-spark[PyHive]==1.5.0
+prettytable==3.8.0

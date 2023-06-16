@@ -10,10 +10,10 @@ notebooks/*
 warehouse/*
 
 # logs
-log/*
-dbt/**/logs
-dbt/**/dbt_packages
-dbt/**/target
+logs/*
+dbt_iceberg/**/logs
+dbt_iceberg/**/dbt_packages
+dbt_iceberg/**/target
 
 # conf
 conf/**/*.jks
@@ -21,4 +21,5 @@ conf/**/*.crt
 
 # python
 .venv
+venv
 **/__pycache__

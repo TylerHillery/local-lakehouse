@@ -25,7 +25,7 @@ ENV AWSSDK_VERSION=2.20.18
 # Optional path env variables
 ENV SPARK_HOME=/opt/spark
 ENV BIN_DIR=/usr/bin
-ENV DBT_DIR=/src/dbt
+ENV DBT_DIR=/src/dbt_iceberg
 ENV DATA_DIR=/src/data
 ENV NOTEBOOKS_DIR=/src/notebooks
 ENV SPARK_EVENTS_DIR=/tmp/spark-events
@@ -109,7 +109,7 @@ COPY conf/ipython/startup/README /root/.ipython/profile_default/startup
 COPY conf/notebook ${BIN_DIR}/notebook
 COPY conf/notebook ${BIN_DIR}/pyspark-notebook
 COPY .pyiceberg.yaml /root/.pyiceberg.yaml
-COPY query-engines/notebooks/ /src/notebooks
+COPY examples/notebooks/ /src/notebooks
 
 RUN chmod u+x ${SPARK_HOME}/* \
   && chmod u+x ${SPARK_HOME}/bin/* \
