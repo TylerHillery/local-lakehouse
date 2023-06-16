@@ -16,11 +16,12 @@
 # KIND, either express or implied.  See the License for the
 # specific language governing permissions and limitations
 # under the License.
+export JAVA_HOME="$(jrunscript -e 'java.lang.System.out.println(java.lang.System.getProperty("java.home"));')"
 
 start-master.sh -p 7077
 start-worker.sh spark://spark-iceberg:7077
 start-history-server.sh
-start-thriftserver.sh  --driver-java-options "-Dderby.system.home=/tmp/derby"
+start-thriftserver.sh --class org.apache.spark.sql.hive.thriftserver.HiveThriftServer2
 
 # Entrypoint, for example notebook, pyspark or spark-sql
 if [[ $# -gt 0 ]] ; then
