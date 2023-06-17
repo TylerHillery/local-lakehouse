@@ -26,4 +26,5 @@ start-thriftserver.sh --class org.apache.spark.sql.hive.thriftserver.HiveThriftS
 # Entrypoint, for example notebook, pyspark or spark-sql
 if [[ $# -gt 0 ]] ; then
     eval "$1"
+    eval "$2"
 fi

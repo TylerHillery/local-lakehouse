@@ -28,6 +28,7 @@ ENV BIN_DIR=/usr/bin
 ENV DBT_DIR=/src/dbt_iceberg
 ENV DATA_DIR=/src/data
 ENV NOTEBOOKS_DIR=/src/notebooks
+ENV SCRIPTS_DIR=/src/scripts
 ENV SPARK_EVENTS_DIR=/tmp/spark-events
 
 # Add iceberg spark runtime jar to IJava classpath
@@ -37,7 +38,7 @@ ENV INSTALL_DIR=/tmp/install
 
 # Create dirs
 RUN mkdir -p ${SPARK_HOME} ${MINIO_HOME}/bin \ 
-            ${DBT_DIR} ${DATA_DIR} ${NOTEBOOKS_DIR} ${INSTALL_DIR} ${SPARK_EVENTS_DIR} \
+            ${DBT_DIR} ${DATA_DIR} ${NOTEBOOKS_DIR}  ${SCRIPTS_DIR} ${SPARK_EVENTS_DIR} ${INSTALL_DIR} \
             /root/.ipython/profile_default/startup
 
 # install core packages
@@ -128,4 +129,4 @@ RUN curl https://data.cityofnewyork.us/resource/tg4x-b46p.json > /src/data/nyc_f
  && curl https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2021-04.parquet -o /src/data/yellow_tripdata_2021-04.parquet
 
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
-CMD ["notebook"]
+CMD ["spark-submit /src/scripts/load_data.py", "notebook"]

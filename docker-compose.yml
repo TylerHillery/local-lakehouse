@@ -79,8 +79,10 @@ services:
       - AWS_REGION=us-east-1
     volumes:
       - ./examples/notebooks:/src/notebooks
+      - ./examples/scripts:/src/scripts
       - ./dbt_iceberg:/src/dbt_iceberg
     ports:
+      - 4040:4040 # Spark UI Port
       - 7077:7077 # Spark port
       - 8080:8080 # Spark driver UI
       - 8888:8888 # Spark notebook port

@@ -5,9 +5,10 @@ metastore_db
 # vs code settings
 .vscode/*
 
-# data
+# examples
 examples/notebooks/.ipynb_checkpoints
-warehouse/*
+examples/notebooks/spark-warehouse/*
+examples/scripts/spark-warehouse/*
 
 # logs
 logs/*

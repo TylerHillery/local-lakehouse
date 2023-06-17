@@ -4,4 +4,4 @@
 ) }}
 
 SELECT *
-FROM nyc.taxis
+FROM nyc.taxi_trips
