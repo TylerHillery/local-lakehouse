@@ -13,7 +13,7 @@ spark.sql("CREATE DATABASE IF NOT EXISTS nyc")
 
 spark.sql("DROP TABLE IF EXISTS nyc.taxis")
 
-taxi_file = "/src/data/nyc-taxi-trips/yellow_tripdata_2021-04.parquet"
+taxi_file = "/src/data/nyc/yellow_tripdata_2021-04.parquet"
 taxi_trips_df = spark.read.parquet(taxi_file)
 taxi_trips_df.write.saveAsTable("nyc.raw_taxi_trips")
 
