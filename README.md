@@ -16,71 +16,63 @@
  specific language governing permissions and limitations
  under the License.
 -->
-
-# Spark + Iceberg Quickstart Image
-
-This is a docker compose environment to quickly get up and running with a Spark environment and a local REST
-catalog, and MinIO as a storage backend.
+# **Local Lakehouse Overview**
+This provides a docker compose environment to quickly spin up a Spark, Iceberg REST Catalog, MinIO, dbt and soon more. Great for testing ideas and learning.
 
 **note**: If you don't have docker installed, you can head over to the [Get Docker](https://docs.docker.com/get-docker/)
 page for installation instructions.
 
-## Usage
+## **Usage**
 Start up the notebook server by running the following.
+```
+docker-compose build
+```
 ```
 docker-compose up
 ```
 
-The notebook server will then be available at http://localhost:8888
+This opens up the following ports:
+- MinIO UI http://localhost:9000 use `admin` for username and `password` for password
+- Iceberg REST Catalog http://localhost:8181
+- Spark UI http://localhost:4040
+- Spark Cluster http://localhost:7077
+- Spark Driver UI http://localhost:8080
+- Jupyter Notebook http://localhost:8888
+- Spark Thrift Server http://localhost:10000
+- Spark History http://localhost:18080
 
-While the notebook server is running, you can use any of the following commands if you prefer to use spark-shell, spark-sql, or pyspark.
+To stop everything
 ```
-docker exec -it spark-iceberg spark-shell
-```
-```
-docker exec -it spark-iceberg spark-sql
-```
-```
-docker exec -it spark-iceberg pyspark
-```
-
-To stop everything, just run `docker-compose down`.
-
-## Troubleshooting & Maintenance
-
-### Refreshing Docker Image
-
-The prebuilt spark image is uploaded to Dockerhub. Out of convenience, the image tag defaults to `latest`.
-
-If you have an older version of the image, you might need to remove it to upgrade.
-```bash
-docker image rm tabulario/spark-iceberg && docker-compose pull
+docker-compose down
 ```
 
-### Building the Docker Image locally
+## **Current Services Integrated**
+[x] Spark
 
-If you want to make changes to the local files, and test them out, you can build the image locally and use that instead:
+[x] Iceberg REST Catalog
 
-```bash
-docker image rm tabulario/spark-iceberg && docker-compose build
-```
+[x] MinIO
 
-### Use `Dockerfile` In This Repo
+[x] dbt
 
-To directly use the Dockerfile in this repo (as opposed to pulling the pre-build `tabulario/spark-iceberg` image), you can use `docker-compose build`.
+## **Feature services I want to Integrate**
+[] Trino
 
-### Deploying Changes
+[] DuckDB
 
-To deploy changes to the hosted docker image `tabulario/spark-iceberg`, run the following. (Requires access to the tabulario docker hub account)
+[] Airflow
 
-```sh
-cd spark
-docker buildx build -t tabulario/spark-iceberg --platform=linux/amd64,linux/arm64 . --push
-```
+[] Dagster
 
----
+[] Metabase
 
-For more information on getting started with using Iceberg, checkout
-the [Getting Started](https://iceberg.apache.org/getting-started/) guide in the official docs.
+[] Rill Data
 
-The repository for the docker image is [located on dockerhub](https://hub.docker.com/r/tabulario/spark-iceberg).
+[] Evidence
+
+## **Resources**
+- [Iceberg's REST Catalog: A Spark Demo](https://tabular.io/blog/rest-catalog-docker/)
+- [GitHub Repo Tabluar Docker-Spark-Iceber](https://github.com/tabular-io/docker-spark-iceberg)
+- [Iceberg + Spark + Trino + Dagster: modern, open-source data stack demo](https://blog.devgenius.io/modern-data-stack-demo-5d75dcdfba50)
+- [GitHub Repo Jaffle Shop DuckDB](https://github.com/dbt-labs/jaffle_shop_duckdb)
+- [Using dbt with Tabular](https://tabular.io/blog/dbt/)
