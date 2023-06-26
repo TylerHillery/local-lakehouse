@@ -25,10 +25,11 @@ ENV AWSSDK_VERSION=2.20.18
 # Optional path env variables
 ENV SPARK_HOME=/opt/spark
 ENV BIN_DIR=/usr/bin
-ENV DBT_DIR=/src/dbt_iceberg
-ENV DATA_DIR=/src/data
-ENV NOTEBOOKS_DIR=/src/notebooks
-ENV SCRIPTS_DIR=/src/scripts
+ENV DBT_DIR=/src/projects/dbt_iceberg
+ENV NOTEBOOKS_DIR=/src/projects/notebooks
+ENV SCRIPTS_DIR=/src/projects/scripts
+ENV JAFFLE_SHOP_DATA_DIR=/src/data/jaffle-shop
+ENV NYC_TAXI_TRIPS_DATA_DIR=/src/data/nyc-taxi-trips
 ENV SPARK_EVENTS_DIR=/tmp/spark-events
 
 # Add iceberg spark runtime jar to IJava classpath
@@ -38,8 +39,10 @@ ENV INSTALL_DIR=/tmp/install
 
 # Create dirs
 RUN mkdir -p ${SPARK_HOME} ${MINIO_HOME}/bin \ 
-            ${DBT_DIR} ${DATA_DIR} ${NOTEBOOKS_DIR}  ${SCRIPTS_DIR} ${SPARK_EVENTS_DIR} ${INSTALL_DIR} \
-            /root/.ipython/profile_default/startup
+             ${DBT_DIR} ${NOTEBOOKS_DIR} ${SCRIPTS_DIR} \
+             ${JAFFLE_SHOP_DATA_DIR} ${NYC_TAXI_TRIPS_DATA_DIR} \
+             ${SPARK_EVENTS_DIR} ${INSTALL_DIR} \
+             /root/.ipython/profile_default/startup
 
 # install core packages
 RUN apt-get update && apt-get upgrade -y && \
@@ -112,21 +115,5 @@ RUN chmod u+x ${SPARK_HOME}/* \
   && chmod u+x ${BIN_DIR}/notebook \
   && chmod u+x ${BIN_DIR}/pyspark-notebook
 
-# Download data
-RUN curl https://data.cityofnewyork.us/resource/tg4x-b46p.json > /src/data/nyc_film_permits.json \
- && curl https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2022-04.parquet -o /src/data/yellow_tripdata_2022-04.parquet \
- && curl https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2022-03.parquet -o /src/data/yellow_tripdata_2022-03.parquet \
- && curl https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2022-02.parquet -o /src/data/yellow_tripdata_2022-02.parquet \
- && curl https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2022-01.parquet -o /src/data/yellow_tripdata_2022-01.parquet \
- && curl https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2021-12.parquet -o /src/data/yellow_tripdata_2021-12.parquet \
- && curl https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2021-11.parquet -o /src/data/yellow_tripdata_2021-11.parquet \
- && curl https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2021-10.parquet -o /src/data/yellow_tripdata_2021-10.parquet \
- && curl https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2021-09.parquet -o /src/data/yellow_tripdata_2021-09.parquet \
- && curl https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2021-08.parquet -o /src/data/yellow_tripdata_2021-08.parquet \
- && curl https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2021-07.parquet -o /src/data/yellow_tripdata_2021-07.parquet \
- && curl https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2021-06.parquet -o /src/data/yellow_tripdata_2021-06.parquet \
- && curl https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2021-05.parquet -o /src/data/yellow_tripdata_2021-05.parquet \
- && curl https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2021-04.parquet -o /src/data/yellow_tripdata_2021-04.parquet
-
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
-CMD ["spark-submit /src/scripts/load_data.py", "notebook"]
+CMD ["spark-submit /src/projects/scripts/load_data.py", "notebook"]

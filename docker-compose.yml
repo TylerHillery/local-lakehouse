@@ -78,9 +78,8 @@ services:
       - AWS_SECRET_ACCESS_KEY=password
       - AWS_REGION=us-east-1
     volumes:
-      - ./examples/notebooks:/src/notebooks
-      - ./examples/scripts:/src/scripts
-      - ./dbt_iceberg:/src/dbt_iceberg
+      - ./projects:/src/projects
+      - ./data:/src/data
     ports:
       - 4040:4040 # Spark UI Port
       - 7077:7077 # Spark port
