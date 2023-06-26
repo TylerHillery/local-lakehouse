@@ -1,7 +1,7 @@
-dbt_iceberg:
-  target: dev
+dev:
+  target: trino
   outputs:
-    dev:
+    spark:
       type: spark
       method: thrift
       schema: dbt
@@ -11,3 +11,12 @@ dbt_iceberg:
       connect_retries: 3
       connect_timeout: 15
       retry_all: true
+    trino:
+      type: trino
+      database: iceberg
+      schema: dbt
+      user: trino
+      http_scheme: http
+      host: trino
+      port: 8060
+      threads: 1

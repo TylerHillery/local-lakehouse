@@ -7,7 +7,7 @@ version: '1.0.0'
 config-version: 2
 
 # This setting configures which "profile" dbt uses for this project.
-profile: 'dbt_iceberg'
+profile: 'dev'
 
 # These configurations specify where dbt should look for different types of files.
 # The `model-paths` config, for consumption, states that models in this project can be
@@ -36,6 +36,7 @@ models:
   dbt_iceberg:
     +materialized: table
     +file_format: iceberg
+    +on_table_exists: drop
     +persist_docs: 
       relation: true
       columns: true
@@ -43,8 +44,6 @@ models:
       +schema: jaffle_shop
     nyc:
       +schema: nyc
-    
-    
 
 on-run-start:
   - "CREATE SCHEMA IF NOT EXISTS {{ schema }}"
