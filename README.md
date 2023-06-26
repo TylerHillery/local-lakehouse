@@ -47,28 +47,19 @@ docker-compose down
 ```
 
 ## **Current Services Integrated**
-[x] Spark
-
-[x] Iceberg REST Catalog
-
-[x] MinIO
-
-[x] dbt
+- [x] Spark
+- [x] Iceberg REST Catalog
+- [x] MinIO
+- [x] dbt
 
 ## **Feature services I want to Integrate**
-[] Trino
-
-[] DuckDB
-
-[] Airflow
-
-[] Dagster
-
-[] Metabase
-
-[] Rill Data
-
-[] Evidence
+- [ ] Trino
+- [ ] DuckDB
+- [ ] Airflow
+- [ ] Dagster
+- [ ] Metabase
+- [ ] Rill Data
+- [ ] Evidence
 
 ## **Resources**
 - [Iceberg's REST Catalog: A Spark Demo](https://tabular.io/blog/rest-catalog-docker/)
