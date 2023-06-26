@@ -39,6 +39,12 @@ models:
     +persist_docs: 
       relation: true
       columns: true
+    jaffle_shop:
+      +schema: jaffle_shop
+    nyc:
+      +schema: nyc
+    
+    
 
 on-run-start:
   - "CREATE SCHEMA IF NOT EXISTS {{ schema }}"

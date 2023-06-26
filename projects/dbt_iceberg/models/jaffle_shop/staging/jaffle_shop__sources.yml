@@ -1,8 +1,7 @@
 version: 2
 
 sources:
-  - name: jaffle_shop
-    database: jaffle_shop  
+  - name: jaffle_shop 
     schema: jaffle_shop  
     tables:
       - name: raw_customers
