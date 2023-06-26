@@ -53,11 +53,11 @@ docker-compose down
 - [x] Iceberg REST Catalog
 - [x] MinIO
 - [x] dbt
+- [x] Trino
 
 ## **Feature services I want to Integrate**
 
 ### Query Engines
-- [ ] Trino
 - [ ] DuckDB
 
 ### Orchestrators
